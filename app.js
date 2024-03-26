@@ -212,6 +212,7 @@ document.addEventListener('DOMContentLoaded', () =>  {
   //clear timer
   function clear() {
     clearInterval(myTimer)
+    location.reload()
   }
 
 
