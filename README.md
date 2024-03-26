@@ -6,4 +6,6 @@
 
 Поиграть можно [*здесь*](https://sigma-games.ru/game.php?id=152)
 
+Оригинальный проект: [kubowania/2048](https://github.com/kubowania/2048)
+
 ![image](https://github.com/aLBInOS1/SigmaGames_2048/assets/79748635/a32538bf-5eb5-4c57-8926-3fc7355a811e)
