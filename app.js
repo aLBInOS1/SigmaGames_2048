@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () =>  {
+  //displaying an advertising banner at launch
   SigmaGamesSDK.ShowFullscreenAdv();
   const gridDisplay = document.querySelector('.grid')
   const scoreDisplay = document.getElementById('score')
@@ -186,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () =>  {
   function checkForWin() {
     for (let i=0; i < squares.length; i++) {
       if (squares[i].innerHTML == 2048) {
-        resultDisplay.innerHTML = 'You WIN'
+        resultDisplay.innerHTML = 'Победа! Мои поздравления)'
         document.removeEventListener('keyup', control)
         setTimeout(() => clear(), 3000)
       }
@@ -202,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () =>  {
       }
     }
     if (zeros === 0) {
-      resultDisplay.innerHTML = 'You LOSE'
+      resultDisplay.innerHTML = 'Поражение! Попробуй ещё раз'
       document.removeEventListener('keyup', control)
       setTimeout(() => clear(), 3000)
     }
