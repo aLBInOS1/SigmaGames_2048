@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () =>  {
   let squares = []
   const width = 4
   let score = 0
+  let record = SigmaGamesSDK.GetGameData().record;
 
   //create the playing board
   function createBoard() {
@@ -187,7 +188,11 @@ document.addEventListener('DOMContentLoaded', () =>  {
   function checkForWin() {
     for (let i=0; i < squares.length; i++) {
       if (squares[i].innerHTML == 2048) {
-        resultDisplay.innerHTML = 'Победа! Мои поздравления)'
+        if (score > record) {
+          record = score
+          SigmaGamesSDK.SetGameData({"record" : score})
+        }
+        resultDisplay.innerHTML = 'Победа! Мои поздравления :)\nРекорд: ' + record
         document.removeEventListener('keyup', control)
         setTimeout(() => clear(), 3000)
       }
@@ -203,7 +208,11 @@ document.addEventListener('DOMContentLoaded', () =>  {
       }
     }
     if (zeros === 0) {
-      resultDisplay.innerHTML = 'Поражение! Попробуй ещё раз'
+      if (score > record) {
+        record = score
+        SigmaGamesSDK.SetGameData({"record" : score})
+      }
+      resultDisplay.innerHTML = 'Поражение! Попробуй ещё раз\nРекорд: ' + record
       document.removeEventListener('keyup', control)
       setTimeout(() => clear(), 3000)
     }
