@@ -7,8 +7,11 @@ document.addEventListener('DOMContentLoaded', () =>  {
   let squares = []
   const width = 4
   let score = 0
-  //get the saved record value, otherwise set 0
-  let record = SigmaGamesSDK.GetGameData()?.record ?? 0;
+  //get the saved data
+  const savedData = JSON.parse(SigmaGamesSDK.GetGameData())
+  //set record value
+  let record = 0
+  if (savedData.record != undefined) record = savedData.record
 
   //create the playing board
   function createBoard() {
@@ -193,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () =>  {
           record = score
           SigmaGamesSDK.SetGameData(JSON.stringify({"record" : score}))
         }
-        resultDisplay.innerHTML = 'Победа! Мои поздравления :)\nРекорд: ' + record
+        resultDisplay.innerHTML = 'Победа! Мои поздравления :)<br>Рекорд: ' + record
         document.removeEventListener('keyup', control)
         setTimeout(() => clear(), 3000)
       }
@@ -213,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () =>  {
         record = score
         SigmaGamesSDK.SetGameData(JSON.stringify({"record" : score}))
       }
-      resultDisplay.innerHTML = 'Поражение! Попробуй ещё раз\nРекорд: ' + record
+      resultDisplay.innerHTML = 'Поражение! Попробуй ещё раз<br>Рекорд: ' + record
       document.removeEventListener('keyup', control)
       setTimeout(() => clear(), 3000)
     }
