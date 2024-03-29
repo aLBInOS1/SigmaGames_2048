@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () =>  {
       if (squares[i].innerHTML == 2048) {
         if (score > record) {
           record = score
-          SigmaGamesSDK.SetGameData({"record" : score})
+          SigmaGamesSDK.SetGameData(JSON.stringify({"record" : score}))
         }
         resultDisplay.innerHTML = 'Победа! Мои поздравления :)\nРекорд: ' + record
         document.removeEventListener('keyup', control)
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () =>  {
     if (zeros === 0) {
       if (score > record) {
         record = score
-        SigmaGamesSDK.SetGameData({"record" : score})
+        SigmaGamesSDK.SetGameData(JSON.stringify({"record" : score}))
       }
       resultDisplay.innerHTML = 'Поражение! Попробуй ещё раз\nРекорд: ' + record
       document.removeEventListener('keyup', control)
