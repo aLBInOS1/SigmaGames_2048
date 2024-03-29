@@ -160,8 +160,7 @@ document.addEventListener('DOMContentLoaded', () =>  {
   }
 
   //process swipes on touch devices and mouse movement
-  var myElement = document.getElementById('myElement');
-  var mc = new Hammer(myElement);
+  var mc = new Hammer(gridDisplay);
   mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
   mc.on("panleft panright panup pandown", function(ev) {
     alert(ev.type);
