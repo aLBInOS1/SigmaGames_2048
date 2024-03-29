@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () =>  {
   let squares = []
   const width = 4
   let score = 0
-  let record = SigmaGamesSDK.GetGameData().record;
+  //get the saved record value, otherwise set 0
+  let record = SigmaGamesSDK.GetGameData()?.record ?? 0;
 
   //create the playing board
   function createBoard() {
