@@ -158,7 +158,19 @@ document.addEventListener('DOMContentLoaded', () =>  {
       keyDown()
     }
   }
-  document.addEventListener('keyup', control)
+
+  //process swipes on touch devices and mouse movement
+  var myElement = document.getElementById('myElement');
+  var mc = new Hammer(myElement);
+  mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+  mc.on("panleft panright panup pandown", function(ev) {
+    alert(ev.type);
+  });
+
+  //adding keyboard key support
+  if (SigmaGamesSDK.GetDeviceInfo=="desktop") {
+    document.addEventListener('keyup', control)
+  }
 
   function keyRight() {
     moveRight()
@@ -192,11 +204,8 @@ document.addEventListener('DOMContentLoaded', () =>  {
   function checkForWin() {
     for (let i=0; i < squares.length; i++) {
       if (squares[i].innerHTML == 2048) {
-        if (score > record) {
-          record = score
-          SigmaGamesSDK.SetGameData(JSON.stringify({"record" : score}))
-        }
-        resultDisplay.innerHTML = 'Победа! Мои поздравления :)<br>Рекорд: ' + record
+        checkRecord()
+        resultDisplay.innerHTML = 'Победа! Мои поздравления :)'
         document.removeEventListener('keyup', control)
         setTimeout(() => clear(), 3000)
       }
@@ -212,13 +221,18 @@ document.addEventListener('DOMContentLoaded', () =>  {
       }
     }
     if (zeros === 0) {
-      if (score > record) {
-        record = score
-        SigmaGamesSDK.SetGameData(JSON.stringify({"record" : score}))
-      }
+      checkRecord()
       resultDisplay.innerHTML = 'Поражение! Попробуй ещё раз<br>Рекорд: ' + record
       document.removeEventListener('keyup', control)
       setTimeout(() => clear(), 3000)
+    }
+  }
+
+  //checking whether the user's record needs to be updated
+  function checkRecord() {
+    if (score > record) {
+      record = score
+      SigmaGamesSDK.SetGameData(JSON.stringify({"record" : score}))
     }
   }
 
