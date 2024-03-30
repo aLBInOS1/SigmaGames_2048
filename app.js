@@ -163,7 +163,20 @@ document.addEventListener('DOMContentLoaded', () =>  {
   var mc = new Hammer(gridDisplay);
   mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
   mc.on("panleft panright panup pandown", function(ev) {
-    alert(ev.type);
+    switch (ev.type) {
+      case "panleft": 
+        keyLeft()
+        break
+      case "panright": 
+        keyRight()
+        break
+      case "panup": 
+        keyUp()
+        break
+      case "pandown": 
+        keyDown()
+        break
+    }
   });
 
   //adding keyboard key support
