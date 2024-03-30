@@ -161,19 +161,19 @@ document.addEventListener('DOMContentLoaded', () =>  {
 
   //process swipes on touch devices and mouse movement
   var mc = new Hammer(gridDisplay);
-  mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
-  mc.on("panleft panright panup pandown", function(ev) {
+  mc.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+  mc.on("swipeleft swiperight swipeup swipedown", function(ev) {
     switch (ev.type) {
-      case "panleft": 
+      case "swipeleft": 
         keyLeft()
         break
-      case "panright": 
+      case "swiperight": 
         keyRight()
         break
-      case "panup": 
+      case "swipeup": 
         keyUp()
         break
-      case "pandown": 
+      case "swipedown": 
         keyDown()
         break
     }
