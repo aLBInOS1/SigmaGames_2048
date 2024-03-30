@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () =>  {
   const savedData = JSON.parse(SigmaGamesSDK.GetGameData())
   //set record value
   let record = 0
-  if (savedData.record != null && savedData.record != undefined) record = savedData.record
+  if (savedData != null && savedData.record != null) record = savedData.record
 
   //create the playing board
   function createBoard() {
