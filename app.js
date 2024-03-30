@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () =>  {
   let squares = []
   const width = 4
   let score = 0
+  let canInteract = true
   //get the saved data
   const savedData = JSON.parse(SigmaGamesSDK.GetGameData())
   //set record value
@@ -148,6 +149,8 @@ document.addEventListener('DOMContentLoaded', () =>  {
 
   //assign functions to keyCodes
   function control(e) {
+    if (!canInteract) return
+
     if(e.keyCode === 37) {
       keyLeft()
     } else if (e.keyCode === 38) {
@@ -163,6 +166,7 @@ document.addEventListener('DOMContentLoaded', () =>  {
   var mc = new Hammer(gridDisplay);
   mc.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
   mc.on("swipeleft swiperight swipeup swipedown", function(ev) {
+    if (!canInteract) return
     switch (ev.type) {
       case "swipeleft": 
         keyLeft()
@@ -218,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () =>  {
       if (squares[i].innerHTML == 2048) {
         checkRecord()
         resultDisplay.innerHTML = 'Победа! Мои поздравления :)'
-        document.removeEventListener('keyup', control)
+        canInteract = false
         setTimeout(() => clear(), 3000)
       }
     }
@@ -235,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () =>  {
     if (zeros === 0) {
       checkRecord()
       resultDisplay.innerHTML = 'Поражение! Попробуй ещё раз<br>Рекорд: ' + record
-      document.removeEventListener('keyup', control)
+      canInteract = false
       setTimeout(() => clear(), 3000)
     }
   }
