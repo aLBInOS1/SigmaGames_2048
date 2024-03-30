@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () =>  {
   });
 
   //adding keyboard key support
-  if (SigmaGamesSDK.GetDeviceInfo=="desktop") {
+  if (SigmaGamesSDK.GetDeviceInfo()=="desktop") {
     document.addEventListener('keyup', control)
   }
 
